@@ -1,0 +1,308 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 0, 0} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Bhardrinath N Resume},
+    pdfauthor={Bhardrinath N},
+    pdfcreator={},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+% Some settings:
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0.15cm} % set column seperation
+\pagenumbering{gobble} % no page numbering
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0 cm + 0.00001 cm
+    }{
+        0 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{threecolentry}[3][]{
+    \onecolentry
+    \def\thirdColumn{#3}
+    \setcolumnwidth{, \fill, 4.5 cm}
+    \begin{paracol}{3}
+    {\raggedright #2} \switchcolumn
+}{
+    \switchcolumn \raggedleft \thirdColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for three column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{}\hspace{\widthof{}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{25 pt}{25 pt}\selectfont BHARDRINATH NARASIMHAN
+
+        \vspace{5 pt}
+
+        \normalsize
+       
+        \mbox{\hrefWithoutArrow{mailto:bhardrinath2004@gmail.com}{bhardrinath2004@gmail.com} •{+91-9790611745}}
+          \faLinkedin\ \href{https://www.linkedin.com/in/bhardrinath-narasimhan-b50a9a282/}{Bhardrinath Narasimhan}
+
+        
+    \end{header}
+
+    \vspace{5 pt - 0.3 cm}
+
+
+    \section{OBJECTIVE}
+
+
+
+        
+        \begin{onecolentry}
+        Enthusiastic MCA postgraduate with a solid foundation in programming, databases, and cloud technologies. Looking for an opportunity to leverage technical skills, adapt quickly, and contribute effectively to real-world software projects.
+
+
+        \end{onecolentry}
+
+
+
+    
+
+
+    \section{EDUCATION}
+
+       \begin{twocolentry}{
+            2024 – 2026
+        }
+            
+             \textbf {Master of Computer Applications.CGPA: 8.05/10.00}
+                \vspace{0.05 cm}
+            \item {Sathyabama Institute of Science and Technology, Chennai}
+            \end{twocolentry}
+         \vspace{0.05 cm}
+        \begin{twocolentry}{
+            2021 – 2024
+        }
+              \textbf{Bachelor of Science in Computer Science.CGPA: 6.9272/10.00}
+              \vspace{0.05 cm}
+            \item {SRC-Sastra Deemed To Be University, Kumbakonam}
+            \end{twocolentry}
+
+        \vspace{0.10 cm}
+        
+        \begin{twocolentry}{
+            2021
+        }
+            \textbf {HSC Percentage: 72}
+               \vspace{0.05 cm}
+            \item {Town Higher Secondary School, Kumbakonam}
+         
+            \end{twocolentry}
+
+            \vspace{0.05 cm}
+        
+        \begin{twocolentry}{
+            2019
+        }
+           \textbf {SSLC Percentage: 61.2}
+            \vspace{0.05 cm}
+            \item {Town Higher Secondary School, Kumbakonam}
+           
+            \end{twocolentry}
+
+
+
+    
+    \section{TECHNICAL SKILLS}
+
+        \vspace{0.05 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+           \item SQL, Web Development,Python, Java Programming
+           \item Communication skills, Time Management, Active Listening, Interpersonal skills
+            \end{highlights}
+        \end{onecolentry}
+
+
+
+
+    
+    \section{PROJECTS}
+
+     \begin{onecolentry}
+        \textbf{ZUNA – The Personal AI Agent}
+            \begin{highlights}
+                \item Developed an AI-powered assistant that integrates Gmail, Google Calendar, Sheets, and Telegram for daily task automation.
+                \vspace{0.05 cm}
+                \item Applied Google Gemini AI for natural language understanding to process user requests conversationally.
+                 \vspace{0.05 cm}
+                \item Automated workflows: replying to emails, scheduling events, detecting conflicts, updating spreadsheets.
+               \end{highlights} \end{onecolentry}
+        
+ 
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+        \textbf{Online Table Booking System for Restaurants}
+            \begin{highlights}
+                \item Developed a web-based application that allows users to reserve tables in restaurants in real time.
+                \vspace{0.05 cm}
+                \item Designed an intuitive interface to streamline the reservation process for customers and restaurant staff.
+                 \vspace{0.05 cm}
+                \item Implemented backend functionalities for table availability checks, reservation management, and confirmation notifications.
+                 \vspace{0.05 cm}
+                \item Responsibilities: Designed and implemented scalable back-end architecture \end{highlights} \end{onecolentry}
+        
+
+
+    
+    \section{ACHIEVEMENTS}
+
+   \begin{highlights}
+   \vspace{0.10 cm}
+   \item Certification From UDEMY - From Prompt engineering to Agent engineering
+   \item Certification From NPTEL - Python With DataScience
+ \end{highlights}
+  
+     \section{OTHER INTRESTS}
+
+   \begin{highlights}
+     \item Badminton,Cricket
+  \end{highlights}
+
+     \section{LANGUAGES KNOWN}
+
+   \begin{highlights}
+      \vspace{0.10 cm}
+     \item English (L/S/R/W)
+     \item Tamil (L/S/R/W)
+     \item Hindi (L/S)
+  \end{highlights}
+        
+      
+
+    
+
+\end{document}
