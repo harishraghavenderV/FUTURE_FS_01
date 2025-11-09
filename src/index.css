@@ -1,0 +1,125 @@
+/* Import Tailwind Output */
+@import "./output.css";
+
+/* 🌊 Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ✨ Text Rendering */
+body {
+  @apply bg-slate-950 text-white antialiased;
+}
+
+/* 👋 Wave Animation */
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60%, 100% { transform: rotate(0deg); }
+}
+
+.animate-wave {
+  animation: wave 2s infinite;
+  transform-origin: 70% 70%;
+}
+
+/* 🌬️ Floating Animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* 🌈 Animated Gradient Background */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-bg {
+  background: linear-gradient(270deg, #1e293b, #3b0764, #0f172a);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+/* 💫 Particle Style */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* 🌟 Smooth Fade-in Animation */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 1s ease forwards;
+}
+
+/* 🎨 Subtle Shadows for Cards & Buttons */
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.shadow-glow-fuchsia {
+  box-shadow: 0 0 20px rgba(232, 121, 249, 0.4);
+}
+
+/* 🧭 Navbar Blur Enhancement */
+.nav-blur {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 📱 Smooth Transitions */
+* {
+  transition: all 0.3s ease-in-out;
+}
+/* 🌊 === NAVBAR STYLES === */
+nav {
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🌟 === HERO ANIMATIONS === */
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60%, 100% { transform: rotate(0deg); }
+}
+
+.animate-wave {
+  animation: wave 2s infinite;
+  transform-origin: 70% 70%;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ✨ === FOOTER FIX === */
+footer {
+  margin-top: auto;
+}
