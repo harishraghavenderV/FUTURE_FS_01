@@ -6,8 +6,8 @@ const Contact = () => {
     email: "",
     message: "",
   });
-
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,7 +15,8 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("Sending...");
+    setLoading(true);
+    setStatus("");
 
     try {
       const res = await fetch("http://localhost:5000/api/contact", {
@@ -36,7 +37,9 @@ const Contact = () => {
       }
     } catch (error) {
       console.error(error);
-      setStatus("⚠️ Server error. Please try again later.");
+      setStatus("⚠️ Error connecting to the server.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,48 +51,50 @@ const Contact = () => {
       <h2 className="text-4xl font-bold mb-8 text-center">Contact Me</h2>
 
       <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl shadow-lg w-full max-w-md border border-white/20">
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col space-y-4"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <input
             type="text"
             name="name"
             placeholder="Your Name"
-            required
             value={formData.name}
             onChange={handleChange}
+            required
             className="p-3 rounded-lg bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
+
           <input
             type="email"
             name="email"
             placeholder="Your Email"
-            required
             value={formData.email}
             onChange={handleChange}
+            required
             className="p-3 rounded-lg bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
+
           <textarea
             name="message"
             placeholder="Your Message"
             rows="4"
-            required
             value={formData.message}
             onChange={handleChange}
+            required
             className="p-3 rounded-lg bg-white/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
           ></textarea>
 
           <button
             type="submit"
-            className="mt-4 bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-all duration-300"
+            disabled={loading}
+            className={`mt-4 bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-all duration-300 ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            Send Message 🚀
+            {loading ? "Sending..." : "Send Message 🚀"}
           </button>
         </form>
 
         {status && (
-          <p className="mt-4 text-center text-sm text-gray-200">{status}</p>
+          <p className="mt-4 text-center text-sm text-gray-300">{status}</p>
         )}
       </div>
 
